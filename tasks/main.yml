@@ -1,0 +1,12 @@
+---
+# tasks file for ansible-static-ip
+- name: Static IP template
+  template:
+    src: 50-cloud-init.yaml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+  tags:
+    - 50-cloud-init
+
+- name: Execute Netplan Update
+  command: netplan apply
+  register: netplan
